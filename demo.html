@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+<style>
+*{
+	margin:0;
+	padding:0;
+}
+li{
+	list-style:none;
+}
+.nav{
+	width:300px;
+	height:40px;
+	background:#f6f6f6;
+}
+.navLeft::-webkit-scrollbar{
+	width:0;
+	height:0;
+} 
+.navLeft{
+	width:250px;
+	height:40px;
+	float:left;
+	overflow-x:scroll;
+	overflow-y:hidden;
+}
+.navLeft .navList{
+	height:40px;
+	width:640px;
+}
+.navLeft .navList li{
+	float:left;
+	width:80px;
+	line-height:40px;
+	color:#999;
+}
+.navRight{
+	width:50px;
+	height:40px;
+	background:green;
+	float:left;
+}
+</style>
+</head>
+<body>
+<div class="nav">
+	<div class="navLeft">
+		<ul class="navList">
+			<li>我的收藏</li>
+			<li>我的收藏</li>
+			<li>我的收藏</li>
+			<li>我的收藏</li>
+			<li>我的收藏</li>
+			<li>我的收藏</li>
+			<li>我的收藏</li>
+			<li>我的收藏</li>
+		</ul>
+	</div>
+	<div class="navRight"></div>
+</div>
+<script src="jquery.js"></script>
+<script>
+	$(".navList li").click(function(){
+		$(this).css("color","red").siblings().css("color","#999");
+		var index = $(this).index();
+		var num = $("ul li:lt("+index+")").length;//点击的li的以前元素的长度
+		var bfWidth = 0;
+		for(var i = 0;i<num-1;i++){
+			bfWidth += $("ul li").eq(i).width()//点击的li的以前元素的宽度和
+		}
+		$(".navLeft").animate({
+			scrollLeft: bfWidth
+		}, 300);
+	})
+
+</script>
+</body>
+</html>
